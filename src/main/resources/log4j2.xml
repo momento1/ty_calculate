@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <properties>
+	<property name="name">app</property>
+	<property name="pattern">%d{yyyy-MM-dd HH:mm:ss.sss} [%-5p] [%t](%F:%L) %m%n</property>
+  </properties>
+  <Appenders>
+    <Console name="console" target="SYSTEM_OUT">
+    	<PatternLayout pattern="${pattern}"/>
+    </Console>
+    <RollingFile name="file" fileName="C:/LOG/Calculate/${name}.log" filePattern="C:/LOG/Calculate/$${date:yyyy}/$${date:MM}/$${date:dd}/${name}_%d{yyyyMMddHH}.log">
+	    <PatternLayout>
+        	<pattern>${pattern}</pattern>
+	    </PatternLayout>
+	    <Policies>
+        	<TimeBasedTriggeringPolicy />
+	    </Policies>
+    </RollingFile>
+  </Appenders>
+
+  <Loggers>
+  	<Logger name="LOGIN_LOG" level="debug" additivity="false">
+   	  <AppenderRef ref="console" />
+   	  <AppenderRef ref="file" />
+    </Logger>
+    <Root level="info">
+    	<AppenderRef ref="console" />
+    	<AppenderRef ref="file" />
+    </Root>
+  </Loggers>
+  
+</Configuration>
